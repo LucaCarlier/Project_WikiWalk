@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://openlayers.org/favicon.ico"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WikiWalk - Historische Route</title>
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <h1>WikiWalk</h1>
+
+        <div class="section">
+          <h2>GPS Tracking</h2>
+          <label class="toggle">
+            <input type="checkbox" id="volg" />
+            <span class="slider"></span>
+            <span class="label-text">Locatie volgen</span>
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>Locatie Data</h3>
+          <div class="stat">
+            <span class="stat-label">Nauwkeurigheid</span>
+            <span id="nauwkeurigheid" class="stat-waarde">-</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Hoogte</span>
+            <span id="hoogte" class="stat-waarde">-</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Snelheid</span>
+            <span id="snelheid" class="stat-waarde">-</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Route Info</h3>
+          <div class="stat">
+            <span class="stat-label">Totale Afstand</span>
+            <span id="afstand" class="stat-waarde">-</span>
+          </div>
+        </div>
+
+        <div class="section instructions-section">
+          <h3>Routebeschrijving</h3>
+          <div id="instructions" class="instructions-list">
+            <p class="placeholder-text">Route wordt geladen...</p>
+          </div>
+        </div>
+
+        <div id="info" class="error-msg"></div>
+      </aside>
+
+      <main class="map-container">
+        <div id="map"></div>
+        <div id="popup" class="ol-popup">
+          <a href="#" id="popup-closer" class="ol-popup-closer">✖</a>
+          <div id="popup-content"></div>
+        </div>
+        <button id="center-btn" class="map-button">Mijn Locatie</button>
+      </main>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

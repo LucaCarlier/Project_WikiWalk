@@ -1,0 +1,235 @@
+{
+  "hash": "bb878128",
+  "configHash": "4684ca77",
+  "lockfileHash": "8e661801",
+  "browserHash": "ec2546ad",
+  "optimized": {
+    "ol/Feature.js": {
+      "src": "../../node_modules/ol/Feature.js",
+      "file": "ol_Feature__js.js",
+      "fileHash": "97cf25cf",
+      "needsInterop": false
+    },
+    "ol/Geolocation.js": {
+      "src": "../../node_modules/ol/Geolocation.js",
+      "file": "ol_Geolocation__js.js",
+      "fileHash": "5abe1c71",
+      "needsInterop": false
+    },
+    "ol/geom/LineString.js": {
+      "src": "../../node_modules/ol/geom/LineString.js",
+      "file": "ol_geom_LineString__js.js",
+      "fileHash": "575e7cb5",
+      "needsInterop": false
+    },
+    "ol/geom/Point.js": {
+      "src": "../../node_modules/ol/geom/Point.js",
+      "file": "ol_geom_Point__js.js",
+      "fileHash": "e4c70f0d",
+      "needsInterop": false
+    },
+    "ol/layer/Tile.js": {
+      "src": "../../node_modules/ol/layer/Tile.js",
+      "file": "ol_layer_Tile__js.js",
+      "fileHash": "5dc82e97",
+      "needsInterop": false
+    },
+    "ol/layer/Vector.js": {
+      "src": "../../node_modules/ol/layer/Vector.js",
+      "file": "ol_layer_Vector__js.js",
+      "fileHash": "cd9664b7",
+      "needsInterop": false
+    },
+    "ol/Map.js": {
+      "src": "../../node_modules/ol/Map.js",
+      "file": "ol_Map__js.js",
+      "fileHash": "44202377",
+      "needsInterop": false
+    },
+    "ol/Overlay.js": {
+      "src": "../../node_modules/ol/Overlay.js",
+      "file": "ol_Overlay__js.js",
+      "fileHash": "cfe17280",
+      "needsInterop": false
+    },
+    "ol/proj": {
+      "src": "../../node_modules/ol/proj.js",
+      "file": "ol_proj.js",
+      "fileHash": "5e71842f",
+      "needsInterop": false
+    },
+    "ol/source/Cluster.js": {
+      "src": "../../node_modules/ol/source/Cluster.js",
+      "file": "ol_source_Cluster__js.js",
+      "fileHash": "2e664d50",
+      "needsInterop": false
+    },
+    "ol/source/Vector.js": {
+      "src": "../../node_modules/ol/source/Vector.js",
+      "file": "ol_source_Vector__js.js",
+      "fileHash": "99c09087",
+      "needsInterop": false
+    },
+    "ol/source/XYZ.js": {
+      "src": "../../node_modules/ol/source/XYZ.js",
+      "file": "ol_source_XYZ__js.js",
+      "fileHash": "f003a315",
+      "needsInterop": false
+    },
+    "ol/style/Circle.js": {
+      "src": "../../node_modules/ol/style/Circle.js",
+      "file": "ol_style_Circle__js.js",
+      "fileHash": "744cae06",
+      "needsInterop": false
+    },
+    "ol/style/Fill.js": {
+      "src": "../../node_modules/ol/style/Fill.js",
+      "file": "ol_style_Fill__js.js",
+      "fileHash": "c667b4cc",
+      "needsInterop": false
+    },
+    "ol/style/Stroke.js": {
+      "src": "../../node_modules/ol/style/Stroke.js",
+      "file": "ol_style_Stroke__js.js",
+      "fileHash": "4ae65e2c",
+      "needsInterop": false
+    },
+    "ol/style/Style.js": {
+      "src": "../../node_modules/ol/style/Style.js",
+      "file": "ol_style_Style__js.js",
+      "fileHash": "549c3b4f",
+      "needsInterop": false
+    },
+    "ol/style/Text.js": {
+      "src": "../../node_modules/ol/style/Text.js",
+      "file": "ol_style_Text__js.js",
+      "fileHash": "252877a6",
+      "needsInterop": false
+    },
+    "ol/View.js": {
+      "src": "../../node_modules/ol/View.js",
+      "file": "ol_View__js.js",
+      "fileHash": "29530af6",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-TUVNTSXH": {
+      "file": "chunk-TUVNTSXH.js"
+    },
+    "chunk-MUDTYI2D": {
+      "file": "chunk-MUDTYI2D.js"
+    },
+    "chunk-HGGXKS3V": {
+      "file": "chunk-HGGXKS3V.js"
+    },
+    "chunk-LBPTHL4L": {
+      "file": "chunk-LBPTHL4L.js"
+    },
+    "chunk-VLTZGDTC": {
+      "file": "chunk-VLTZGDTC.js"
+    },
+    "chunk-GZMBTJNJ": {
+      "file": "chunk-GZMBTJNJ.js"
+    },
+    "chunk-FQG5CHH2": {
+      "file": "chunk-FQG5CHH2.js"
+    },
+    "chunk-RF7LNZEP": {
+      "file": "chunk-RF7LNZEP.js"
+    },
+    "chunk-LVK7KL4Y": {
+      "file": "chunk-LVK7KL4Y.js"
+    },
+    "chunk-7IU2W2VQ": {
+      "file": "chunk-7IU2W2VQ.js"
+    },
+    "chunk-W7ENRBOU": {
+      "file": "chunk-W7ENRBOU.js"
+    },
+    "chunk-3LR4F7JL": {
+      "file": "chunk-3LR4F7JL.js"
+    },
+    "chunk-MXGPM3VD": {
+      "file": "chunk-MXGPM3VD.js"
+    },
+    "chunk-FMNGDYBL": {
+      "file": "chunk-FMNGDYBL.js"
+    },
+    "chunk-ZFKN7NCC": {
+      "file": "chunk-ZFKN7NCC.js"
+    },
+    "chunk-HFARU44U": {
+      "file": "chunk-HFARU44U.js"
+    },
+    "chunk-5YGEXILW": {
+      "file": "chunk-5YGEXILW.js"
+    },
+    "chunk-5EC7OQTT": {
+      "file": "chunk-5EC7OQTT.js"
+    },
+    "chunk-ALP5TCHD": {
+      "file": "chunk-ALP5TCHD.js"
+    },
+    "chunk-MOGRN7JF": {
+      "file": "chunk-MOGRN7JF.js"
+    },
+    "chunk-JC72LMCB": {
+      "file": "chunk-JC72LMCB.js"
+    },
+    "chunk-4RND44PX": {
+      "file": "chunk-4RND44PX.js"
+    },
+    "chunk-N4SY66BX": {
+      "file": "chunk-N4SY66BX.js"
+    },
+    "chunk-WBEIXQYB": {
+      "file": "chunk-WBEIXQYB.js"
+    },
+    "chunk-J3L5ARKK": {
+      "file": "chunk-J3L5ARKK.js"
+    },
+    "chunk-RVHGYT2L": {
+      "file": "chunk-RVHGYT2L.js"
+    },
+    "chunk-PZCLYWUR": {
+      "file": "chunk-PZCLYWUR.js"
+    },
+    "chunk-3TH2XOAI": {
+      "file": "chunk-3TH2XOAI.js"
+    },
+    "chunk-7CX4T7OX": {
+      "file": "chunk-7CX4T7OX.js"
+    },
+    "chunk-LA6BC22Z": {
+      "file": "chunk-LA6BC22Z.js"
+    },
+    "chunk-XGTHVUXB": {
+      "file": "chunk-XGTHVUXB.js"
+    },
+    "chunk-2PRC4QHX": {
+      "file": "chunk-2PRC4QHX.js"
+    },
+    "chunk-XLOLXDZY": {
+      "file": "chunk-XLOLXDZY.js"
+    },
+    "chunk-BLKOSPF7": {
+      "file": "chunk-BLKOSPF7.js"
+    },
+    "chunk-LIKQNGUH": {
+      "file": "chunk-LIKQNGUH.js"
+    },
+    "chunk-BPW47KUQ": {
+      "file": "chunk-BPW47KUQ.js"
+    },
+    "chunk-Z6D76LLD": {
+      "file": "chunk-Z6D76LLD.js"
+    },
+    "chunk-4ERFGJB4": {
+      "file": "chunk-4ERFGJB4.js"
+    },
+    "chunk-R5DNHDJW": {
+      "file": "chunk-R5DNHDJW.js"
+    }
+  }
+}
