@@ -1,15 +1,18 @@
 {
   "name": "project-wikiwalk",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "start": "vite --host",
     "build": "vite build",
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^7.1.11"
+    "vite": "^7.1.11",
+    "vite-plugin-pwa": "^1.2.0"
   },
   "dependencies": {
-    "ol": "latest"
+    "ol": "latest",
+    "three": "^0.183.2"
   }
 }

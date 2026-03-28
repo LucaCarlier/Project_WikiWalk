@@ -18,6 +18,19 @@ import { fromLonLat, toLonLat } from 'ol/proj';
 import Cluster from 'ol/source/Cluster.js';
 import Overlay from 'ol/Overlay.js';
 
+import { registerSW } from 'virtual:pwa-register';
+
+const updateSW = registerSW({
+  onNeedRefresh() {
+    if (confirm('Nieuwe versie beschikbaar. Vernieuwen?')) {
+      updateSW();
+    }
+  },
+  onOfflineReady() {
+    console.log('App is klaar voor offline gebruik!');
+  },
+});
+
 const historicalStops = [
   { name: 'Gravensteen', coordinates: fromLonLat([3.721429, 51.05693])},
   { name: 'Vrijdagmarkt', coordinates: fromLonLat([3.725682, 51.056887])},
@@ -231,7 +244,6 @@ if (menuBtn && sidebar) {
   });
 }
 
-// Sluit het menu als je op de kaart klikt
 map.on('click', () => {
   if (sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
