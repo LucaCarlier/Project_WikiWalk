@@ -198,11 +198,13 @@ body {
   border-radius: 10px;
   border: 1px solid #cccccc;
   bottom: 25px;
-  left: -50%;
+  left: -25%;
   transform: translateX(-50%);
   min-width: 200px;
   color: #333;
   pointer-events: auto;
+  /* CRUCIAAL: Zorg dat dit hoger is dan de sidebar (1000) */
+  z-index: 2000; 
 }
 
 .ol-popup:after {
@@ -232,4 +234,61 @@ body {
 
 .ol-popup-closer:hover {
   color: #333;
+}
+
+.menu-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1100; /* Hoger dan sidebar */
+  background: #1a1a2e;
+  color: #4ecdc4;
+  border: 1px solid #4ecdc4;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  display: none; /* Standaard verborgen op desktop */
+}
+
+/* Mobiele schermen (Media Query) */
+@media (max-width: 768px) {
+  #map{
+    width: 100%;
+    height:100%
+  }
+  .menu-button {
+    display: block; /* Toon knop op mobiel */
+  }
+
+  .sidebar {
+    position: absolute;
+    left: -320px; /* Verberg buiten beeld */
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+  }
+
+  /* Wanneer de sidebar actief is */
+  .sidebar.open {
+    left: 0;
+  }
+
+  /* Zorg dat de kaart de volledige breedte vult */
+  .container {
+    flex-direction: column;
+  }
+
+  /* Center button iets omhoog zodat hij niet achter mobiele UI verdwijnt */
+  .map-button {
+    bottom: 30px;
+    right: 20px;
+    padding: 12px 20px;
+  }
+  
+  /* Popup aanpassing voor mobiel */
+  .ol-popup {
+    min-width: 150px;
+  }
 }
