@@ -10,7 +10,7 @@ import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
 import gsap from "gsap";
 import { registerSW } from "virtual:pwa-register";
 
-// --- 1. Service Worker & PWA ---
+// --- PWA ---
 const updateSW = registerSW({
   onNeedRefresh() {
     if (confirm("Nieuwe versie beschikbaar. Vernieuwen?")) updateSW();
@@ -20,7 +20,7 @@ const updateSW = registerSW({
   },
 });
 
-// --- 2. Configuratie & Data ---
+// --- Data ---
 const historicalStops = [
   { name: "Gravensteen", coordinates: fromLonLat([3.721429, 51.05693]) },
   { name: "Vrijdagmarkt", coordinates: fromLonLat([3.725682, 51.056887]) },
@@ -37,7 +37,7 @@ const routeSource = new VectorSource();
 const stopSource = new VectorSource();
 const locationSource = new VectorSource();
 
-// --- 3. Kaart Initialisatie ---
+// --- Kaart Initialisatie ---
 const map = new Map({
   target: "map",
   layers: [
@@ -75,7 +75,7 @@ const map = new Map({
   view: view,
 });
 
-// --- 4. Markers & Routing ---
+// --- Markers & Routing ---
 historicalStops.forEach((stop, index) => {
   const marker = new Feature({
     geometry: new Point(stop.coordinates),
@@ -142,7 +142,7 @@ async function buildFullRoute() {
           });
         }
       }
-      // Kleine delay om API-rate limits te voorkomen
+      // Kleine delay
       await new Promise((resolve) => setTimeout(resolve, 100));
     } catch (e) {
       console.error("Routing error:", e);
@@ -290,42 +290,35 @@ map.on("click", () => {
   }
 });
 
-// --- WebXR AR Mode ---
+// --- WebXR ---
 export function startAR(container) {
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    70,
-    window.innerWidth / window.innerHeight,
-    0.01,
-    20,
-  );
+  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 20);
+  
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.xr.enabled = true;
+
   container.appendChild(renderer.domElement);
 
-  document.body.appendChild(
-    ARButton.createButton(renderer, {
-      requiredFeatures: ["hit-test"],
-      optionalFeatures: ["dom-overlay"],
-      domOverlay: { root: document.body },
-    }),
-  );
+  document.body.appendChild(ARButton.createButton(renderer, { 
+    requiredFeatures: ['hit-test'], 
+    optionalFeatures: ['dom-overlay'], 
+    domOverlay: { root: document.body } 
+  }));
 
-  const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(0.1, 0.1, 0.1),
-    new THREE.MeshBasicMaterial({ color: 0x4ecdc4 }),
-  );
-  cube.position.set(0, 0, -0.5);
-  scene.add(cube);
-
-  renderer.setAnimationLoop(() => renderer.render(scene, camera));
+  renderer.setAnimationLoop(() => {
+    renderer.render(scene, camera);
+  });
 }
 
-document.getElementById("ar-start-btn").addEventListener("click", () => {
-  startAR(document.querySelector(".map-container"));
-  ["ar-start-btn", "center-btn", "menu-toggle"].forEach(
-    (id) => (document.getElementById(id).style.display = "none"),
-  );
+document.getElementById('ar-start-btn').addEventListener('click', () => {
+  const mapContainer = document.querySelector('.map-container');
+  startAR(mapContainer);
+
+  ['ar-start-btn', 'center-btn', 'menu-toggle'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
 });
