@@ -2,11 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://openlayers.org/favicon.ico"
-    />
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WikiWalk - Historische Route</title>
   </head>
@@ -55,16 +51,24 @@
       </aside>
 
       <main class="map-container">
-        <button id="menu-toggle" class="menu-button">☰</button> <div id="map"></div>
+        <button id="menu-toggle" class="menu-button">☰</button>
+        
         <div id="map"></div>
+
         <div id="popup" class="ol-popup">
           <a href="#" id="popup-closer" class="ol-popup-closer">✖</a>
           <div id="popup-content"></div>
         </div>
-        <button id="ar-start-btn" class="map-button" style="bottom: 80px; z-index: inherit;">Start AR Gids</button>
-        <button id="center-btn" class="map-button">Mijn Locatie</button>
+
+        <div id="loader" class="loader-overlay" style="display: none">
+          <div class="spinner"></div>
+        </div>
+
+        <button id="ar-start-btn" class="map-button ar-btn">Start AR Gids</button>
+        <button id="center-btn" class="map-button loc-btn">Mijn Locatie</button>
       </main>
     </div>
+
     <script type="module" src="./main.js"></script>
   </body>
 </html>

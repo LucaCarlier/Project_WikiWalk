@@ -1,17 +1,17 @@
 @import "node_modules/ol/ol.css";
 
+/* --- Basis Reset & Layout --- */
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow: hidden;
+  background: #1a1a2e;
 }
 
 .container {
@@ -20,6 +20,7 @@ body {
   width: 100vw;
 }
 
+/* --- Sidebar Styling --- */
 .sidebar {
   width: 320px;
   min-width: 320px;
@@ -32,6 +33,7 @@ body {
   overflow-y: auto;
   z-index: 1000;
   border-right: 1px solid #333;
+  transition: left 0.3s ease;
 }
 
 .sidebar h1 {
@@ -42,8 +44,7 @@ body {
   border-bottom: 1px solid #333;
 }
 
-.section h2,
-.section h3 {
+.section h2, .section h3 {
   margin: 0 0 12px 0;
   font-size: 12px;
   text-transform: uppercase;
@@ -51,12 +52,7 @@ body {
   color: #888;
 }
 
-.instructions-section {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
+/* --- Routebeschrijving & Stats --- */
 .instructions-list {
   background: #16213e;
   border-radius: 8px;
@@ -75,21 +71,22 @@ body {
   border-bottom: 1px solid #2a2a3e;
 }
 
-.instruction-header:first-child {
-  margin-top: 0;
-}
-
 .instruction-item {
   padding: 6px 0;
   border-bottom: 1px solid #2a2a3e;
   color: #ccc;
 }
 
-.placeholder-text {
-  color: #666;
-  font-style: italic;
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
 }
 
+.stat-label { color: #888; font-size: 13px; }
+.stat-waarde { color: #4ecdc4; font-size: 13px; font-weight: 500; }
+
+/* --- UI Componenten (Toggle) --- */
 .toggle {
   display: flex;
   align-items: center;
@@ -98,15 +95,9 @@ body {
   padding: 12px 16px;
   background: #16213e;
   border-radius: 8px;
-  transition: background 0.2s;
 }
 
-.toggle:hover {
-  background: #1f2b4d;
-}
-.toggle input {
-  display: none;
-}
+.toggle input { display: none; }
 
 .slider {
   width: 40px;
@@ -129,32 +120,14 @@ body {
   transition: 0.3s;
 }
 
-.toggle input:checked + .slider {
-  background: #4ecdc4;
-}
-.toggle input:checked + .slider::after {
-  transform: translateX(20px);
-}
+.toggle input:checked + .slider { background: #4ecdc4; }
+.toggle input:checked + .slider::after { transform: translateX(20px); }
 
-.stat {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-}
-
-.stat-label {
-  color: #888;
-  font-size: 13px;
-}
-.stat-waarde {
-  color: #4ecdc4;
-  font-size: 13px;
-  font-weight: 500;
-}
-
+/* --- Kaart & Container --- */
 .map-container {
   flex: 1;
   position: relative;
+  background: #f0f0f0;
 }
 
 #map {
@@ -162,49 +135,54 @@ body {
   height: 100%;
 }
 
+/* --- Knoppen & Interactie --- */
+.menu-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  background: #1a1a2e;
+  color: #4ecdc4;
+  border: 1px solid #4ecdc4;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
+
 .map-button {
   position: absolute;
-  bottom: 20px;
   right: 20px;
   z-index: 100;
   background: #4ecdc4;
   color: white;
   border: none;
-  padding: 10px 18px;
+  padding: 12px 20px;
   border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background 0.2s;
 }
 
-.map-button:hover {
-  background: #45b7ae;
-}
+.map-button:hover { background: #45b7ae; transform: scale(1.05); }
 
-.error-msg {
-  color: #ff6b6b;
-  font-size: 12px;
-  padding: 10px;
-  background: rgba(255, 107, 107, 0.1);
-  border-radius: 6px;
-  display: none;
-}
+.loc-btn { bottom: 20px; }
+.ar-btn { bottom: 80px; }
 
+/* --- Popups & Overlays --- */
 .ol-popup {
   position: absolute;
   background-color: white;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 15px;
   border-radius: 10px;
-  border: 1px solid #cccccc;
   bottom: 25px;
   left: -25%;
   transform: translateX(-50%);
   min-width: 200px;
-  color: #333;
-  pointer-events: auto;
-  /* CRUCIAAL: Zorg dat dit hoger is dan de sidebar (1000) */
-  z-index: 2000; 
+  z-index: 2000;
 }
 
 .ol-popup:after {
@@ -214,7 +192,6 @@ body {
   height: 0;
   width: 0;
   position: absolute;
-  pointer-events: none;
   border-top-color: white;
   border-width: 10px;
   left: 50%;
@@ -224,71 +201,48 @@ body {
 .ol-popup-closer {
   text-decoration: none;
   position: absolute;
-  top: 5px;
-  right: 10px;
-  color: #888;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
+  top: 5px; right: 10px;
+  color: #888; font-weight: bold;
 }
 
-.ol-popup-closer:hover {
-  color: #333;
-}
-
-.menu-button {
+.loader-overlay {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1100; /* Hoger dan sidebar */
-  background: #1a1a2e;
-  color: #4ecdc4;
-  border: 1px solid #4ecdc4;
-  border-radius: 8px;
-  padding: 10px 15px;
-  font-size: 20px;
-  cursor: pointer;
-  display: none; /* Standaard verborgen op desktop */
+  inset: 0;
+  background: rgba(26, 26, 46, 0.8);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 3000;
+  pointer-events: none;
 }
 
-/* Mobiele schermen (Media Query) */
-@media (max-width: 768px) {
-  #map{
-    width: 100%;
-    height:100%
-  }
-  .menu-button {
-    display: block; /* Toon knop op mobiel */
-  }
+.spinner {
+  width: 50px; height: 50px;
+  border: 5px solid #4ecdc4;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
 
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- Mobiele Optimalisatie --- */
+@media (max-width: 768px) {
   .sidebar {
     position: absolute;
-    left: -320px; /* Verberg buiten beeld */
-    top: 0;
-    bottom: 0;
-    transition: left 0.3s ease;
+    left: -320px;
+    height: 100%;
     box-shadow: 5px 0 15px rgba(0,0,0,0.5);
   }
 
-  /* Wanneer de sidebar actief is */
-  .sidebar.open {
-    left: 0;
+  .sidebar.open { left: 0; }
+
+  .menu-button { 
+    display: block; 
+    right: 20px; 
+    left: auto; /* Hamburger rechts op mobiel */
   }
 
-  /* Zorg dat de kaart de volledige breedte vult */
-  .container {
-    flex-direction: column;
-  }
+  .loc-btn { bottom: 40px; }
+  .ar-btn { bottom: 100px; }
 
-  /* Center button iets omhoog zodat hij niet achter mobiele UI verdwijnt */
-  .map-button {
-    bottom: 30px;
-    right: 20px;
-    padding: 12px 20px;
-  }
-  
-  /* Popup aanpassing voor mobiel */
-  .ol-popup {
-    min-width: 150px;
-  }
+  .ol-popup { min-width: 180px; }
 }

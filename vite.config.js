@@ -10,7 +10,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-group.svg'],
       devOptions: {
-        enabled: true // DIT zorgt ervoor dat je het manifest ziet tijdens 'npm run dev'
+        enabled: true
       },
       manifest: {
         name: 'WikiWalk Gent',
