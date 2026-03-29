@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://openlayers.org/favicon.ico"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WikiWalk - Historische Route</title>
   </head>
@@ -46,13 +50,48 @@
             <p class="placeholder-text">Route wordt geladen...</p>
           </div>
         </div>
+        <div class="section">
+          <h3>Reviews & RSS</h3>
+          <div class="review-form">
+            <select id="stop-selector">
+              <option value="">Kies een locatie...</option>
+            </select>
+            <textarea
+              id="review-text"
+              placeholder="Wat vind je van deze plek?"
+            ></textarea>
+            <div class="rating-row">
+              <input
+                type="number"
+                id="review-score"
+                min="1"
+                max="5"
+                value="5"
+              />
+              
+              <button id="submit-review">Post</button>
+            </div>
+          </div>
+
+          <button id="rss-subscribe" class="rss-button">
+             Kopieer RSS Feed Link
+          </button>
+
+          <div
+            id="feed-reader"
+            class="instructions-list"
+            style="margin-top: 10px"
+          >
+            <p class="placeholder-text">Laatste reviews...</p>
+          </div>
+        </div>
 
         <div id="info" class="error-msg"></div>
       </aside>
 
       <main class="map-container">
         <button id="menu-toggle" class="menu-button">☰</button>
-        
+
         <div id="map"></div>
 
         <div id="popup" class="ol-popup">
@@ -64,7 +103,9 @@
           <div class="spinner"></div>
         </div>
 
-        <button id="ar-start-btn" class="map-button ar-btn">Start AR Gids</button>
+        <button id="ar-start-btn" class="map-button ar-btn">
+          Start AR Gids
+        </button>
         <button id="center-btn" class="map-button loc-btn">Mijn Locatie</button>
       </main>
     </div>

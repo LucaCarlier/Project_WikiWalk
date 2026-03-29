@@ -288,3 +288,36 @@ body {
     min-width: 180px;
   }
 }
+
+.review-form {
+  background: #16213e;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.review-form textarea {
+  background: #1a1a2e;
+  border: 1px solid #333;
+  color: white;
+  padding: 5px;
+  resize: none;
+  height: 60px;
+}
+.rss-button {
+  width: 100%;
+  margin-top: 10px;
+  background: #ff9f43;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.review-item {
+  border-bottom: 1px solid #2a2a3e;
+  padding: 5px 0;
+}
+.review-item small { color: #888; font-size: 10px; }

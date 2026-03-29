@@ -25,10 +25,7 @@ const historicalStops = [
   { name: "Gravensteen", coordinates: fromLonLat([3.721429, 51.05693]) },
   { name: "Vrijdagmarkt", coordinates: fromLonLat([3.725682, 51.056887]) },
   { name: "Stadhuis Gent", coordinates: fromLonLat([3.725337, 51.054501]) },
-  {
-    name: "Sint-Baafskathedraal",
-    coordinates: fromLonLat([3.726961, 51.053007]),
-  },
+  { name: "Sint-Baafskathedraal", coordinates: fromLonLat([3.726961, 51.053007]) },
   { name: "Graslei", coordinates: fromLonLat([3.720725, 51.054782]) },
 ];
 
@@ -320,5 +317,88 @@ document.getElementById('ar-start-btn').addEventListener('click', () => {
   ['ar-start-btn', 'center-btn', 'menu-toggle'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
+  });
+});
+
+// --- RSS  ---
+
+const stopSelector = document.getElementById('stop-selector');
+historicalStops.forEach(stop => {
+  const opt = document.createElement('option');
+  opt.value = stop.name;
+  opt.innerText = stop.name;
+  stopSelector.appendChild(opt);
+});
+
+
+document.getElementById('submit-review').addEventListener('click', () => {
+  const name = stopSelector.value;
+  const text = document.getElementById('review-text').value;
+  const score = document.getElementById('review-score').value;
+
+  if (!name || !text) return alert("Kies een locatie en schrijf iets!");
+
+  const review = {
+    id: crypto.randomUUID(),
+    location: name,
+    content: text,
+    rating: score,
+    date: new Date().toISOString()
+  };
+
+  const reviews = JSON.parse(localStorage.getItem('wikiwalk_reviews') || '[]');
+  reviews.unshift(review);
+  localStorage.setItem('wikiwalk_reviews', JSON.stringify(reviews.slice(0, 50)));
+  
+  document.getElementById('review-text').value = '';
+  renderReviews();
+  generateRSS();
+});
+
+function renderReviews() {
+  const reviews = JSON.parse(localStorage.getItem('wikiwalk_reviews') || '[]');
+  const reader = document.getElementById('feed-reader');
+  reader.innerHTML = reviews.length ? '' : '<p class="placeholder-text">Nog geen reviews...</p>';
+  
+  reviews.slice(0, 5).forEach(rev => { // Toon laatste 5
+    const div = document.createElement('div');
+    div.className = 'review-item';
+    div.innerHTML = `<strong>${rev.location} (${rev.rating}/5)</strong><br>${rev.content}<br><small>${new Date(rev.date).toLocaleString()}</small>`;
+    reader.appendChild(div);
+  });
+}
+renderReviews();
+
+function generateRSS() {
+  const reviews = JSON.parse(localStorage.getItem('wikiwalk_reviews') || '[]');
+  let xml = `<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>WikiWalk Reviews</title>
+  <link href="${window.location.href}" />
+  <updated>${new Date().toISOString()}</updated>
+  <author><name>WikiWalk User</name></author>
+  <id>urn:uuid:wikiwalk-main-feed</id>`;
+
+  reviews.forEach(rev => {
+    xml += `
+  <entry>
+    <title>${rev.location} - ${rev.rating} sterren</title>
+    <link href="${window.location.href}" />
+    <id>urn:uuid:${rev.id}</id>
+    <updated>${rev.date}</updated>
+    <summary>${rev.content}</summary>
+  </entry>`;
+  });
+
+  xml += `\n</feed>`;
+  
+  const blob = new Blob([xml], { type: 'application/atom+xml' });
+  return URL.createObjectURL(blob);
+}
+
+document.getElementById('rss-subscribe').addEventListener('click', () => {
+  const rssUrl = generateRSS();
+  navigator.clipboard.writeText(rssUrl).then(() => {
+    alert("RSS Feed link gekopieerd naar klembord! (Let op: dit is een tijdelijke Blob-URL)");
   });
 });
